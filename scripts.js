@@ -55,3 +55,20 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Toggle Drawer Menu
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
+
+    hamburger.addEventListener("click", function () {
+        navMenu.classList.toggle("active");
+    });
+
+    // Close Menu When Clicking Outside
+    document.addEventListener("click", function (event) {
+        if (!event.target.closest(".hamburger") && !event.target.closest(".nav-menu")) {
+            navMenu.classList.remove("active");
+        }
+    });
+});

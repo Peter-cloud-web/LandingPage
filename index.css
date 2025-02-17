@@ -10,16 +10,13 @@ body {
 /* Header Styles */
 header {
     position: fixed;
-    /* Makes the header float on top of everything */
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255,0.5);
-    /* Semi-transparent white background */
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 10px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    /* Ensures the header is above everything */
 }
 
 .header-container {
@@ -35,18 +32,52 @@ header {
     height: 80px;
 }
 
-nav ul {
+/* Hamburger Icon */
+.hamburger {
+    display: none;
+    /* Hidden by default */
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1001;
+    position: relative;
+    background-color: #DB0CD7;
+    /* Ensure it's above other elements */
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Show Hamburger on Mobile */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+        /* Show hamburger on mobile */
+    }
+}
+
+/* Navigation Menu */
+.nav-menu {
+    display: flex;
+    align-items: center;
+}
+
+.nav-menu ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
 }
 
-nav ul li {
+.nav-menu ul li {
     margin-left: 20px;
 }
 
-nav ul li a {
+.nav-menu ul li a {
     text-decoration: none;
     color: black;
     font-family: "Roboto Condensed", sans-serif;
@@ -57,8 +88,8 @@ nav ul li a {
     transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
-    color: #DB0CD7;
+.nav-menu ul li a:hover {
+    color: #8048e8;
 }
 
 /* Header Right Section */
@@ -89,8 +120,8 @@ nav ul li a:hover {
 .enroll-button {
     background-color: #8048e8;
     color: white;
-    padding: 10px 40px;
-    margin-left: 100px;
+    padding: 10px 20px;
+    /* Adjusted padding for mobile */
     text-decoration: none;
     border-radius: 2px;
     font-family: "Roboto Condensed", sans-serif;
@@ -102,42 +133,51 @@ nav ul li a:hover {
 }
 
 .enroll-button:hover {
-    background-color: #8048e8;
+    background-color: #6a3ac7;
     transform: translateY(-2px);
 }
 
 /* Responsive Design for Mobile */
 @media (max-width: 768px) {
-    .header-container {
+    
+    .hamburger {
+        display: flex;
+        background-color: black;
+        /* Show hamburger on mobile */
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        /* Hide menu off-screen by default */
+        width: 250px;
+        height: 100vh;
+        background-color: white;
         flex-direction: column;
-        align-items: center;
+        justify-content: flex-start;
+        padding-top: 80px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        transition: left 0.3s ease;
+        z-index: 999;
     }
 
-    .logo {
-        margin-bottom: 10px;
+    .nav-menu.active {
+        left: 0;
+        /* Slide menu into view */
     }
 
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav ul li {
-        margin: 10px 0;
-    }
-
-    .header-right {
+    .nav-menu ul {
         flex-direction: column;
         gap: 10px;
-        margin-top: 10px;
     }
 
-    .enroll-button {
-        padding: 8px 16px;
-        font-size: 12px;
+    .nav-menu ul li {
+        margin: 0;
+        padding: 10px 20px;
     }
+
 }
-
 /* Social Media Icons */
 .social-media {
     display: flex;
@@ -697,133 +737,59 @@ footer {
         font-size: 0.9rem;
     }
 }
-/* Keyframes for Slide-In Animations */
-@keyframes slideInFromLeft {
+/* Keyframes for Animations */
+@keyframes fadeIn {
     from {
-        transform: translateX(-100%);
         opacity: 0;
     }
+
     to {
-        transform: translateX(0);
         opacity: 1;
     }
 }
 
-@keyframes slideInFromRight {
+@keyframes slideUp {
     from {
-        transform: translateX(100%);
+        transform: translateY(50px);
         opacity: 0;
     }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
 
-@keyframes slideInFromBottom {
-    from {
-        transform: translateY(100%);
-        opacity: 0;
-    }
     to {
         transform: translateY(0);
         opacity: 1;
     }
 }
 
-@keyframes slideInFromTop {
+@keyframes slideLeft {
     from {
-        transform: translateY(-100%);
+        transform: translateX(50px);
         opacity: 0;
     }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
 
-/* Keyframes for Slide-Out Animations */
-@keyframes slideOutToLeft {
-    from {
+    to {
         transform: translateX(0);
         opacity: 1;
-    }
-    to {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-}
-
-@keyframes slideOutToRight {
-    from {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-}
-
-@keyframes slideOutToBottom {
-    from {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-}
-
-@keyframes slideOutToTop {
-    from {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateY(-100%);
-        opacity: 0;
     }
 }
 
 /* Animation Classes */
-.slide-in-left {
-    animation: slideInFromLeft 1s ease-out forwards;
+.fade-in {
+    animation: fadeIn 1s ease-out forwards;
 }
 
-.slide-in-right {
-    animation: slideInFromRight 1s ease-out forwards;
+.slide-up {
+    animation: slideUp 1s ease-out forwards;
 }
 
-.slide-in-bottom {
-    animation: slideInFromBottom 1s ease-out forwards;
-}
-
-.slide-in-top {
-    animation: slideInFromTop 1s ease-out forwards;
-}
-
-.slide-out-left {
-    animation: slideOutToLeft 1s ease-out forwards;
-}
-
-.slide-out-right {
-    animation: slideOutToRight 1s ease-out forwards;
-}
-
-.slide-out-bottom {
-    animation: slideOutToBottom 1s ease-out forwards;
-}
-
-.slide-out-top {
-    animation: slideOutToTop 1s ease-out forwards;
+.slide-left {
+    animation: slideLeft 1s ease-out forwards;
 }
 
 /* Initially Hide Animated Elements */
 [data-animate] {
     opacity: 0;
 }
+
 /* Extracurricular Activities Section */
 .extracurricular {
     background-color: #f9f9f9;
